@@ -1,6 +1,6 @@
 #nav {
     margin-top: 10px;
-    background: rgb(255, 255, 255, 0.9);
+    background: rgba(140, 140, 140, 0.3);
     list-style-type: none;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
     animation-name: slideInDown;
