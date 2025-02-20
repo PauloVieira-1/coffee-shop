@@ -1,14 +1,16 @@
-import React from 'react';
-import App from './App';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import App from "./App";
+import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
+import CartProvider from "./context/cartContext";
 
- 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Router>
-    <App />
-  </Router>
+    <React.StrictMode>
+        <Router>
+          <App />
+        </Router>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
