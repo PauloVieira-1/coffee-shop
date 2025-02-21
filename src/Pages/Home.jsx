@@ -41,6 +41,7 @@ function Home() {
                 <Button
                   id="my-button"
                   className="btn btn-white rounded-3 px-5 mt-4 text-center"
+                  onClick={() => window.scrollTo(0, 750)}
                 >
                   <h4 className="fw-bold text-center d-block pt-1">Shop Now</h4>
                 </Button>

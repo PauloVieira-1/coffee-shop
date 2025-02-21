@@ -18,6 +18,7 @@ const imgStyle = {
 
 const getCart = () => {
   const cartStored = JSON.parse(localStorage.getItem("CoffeCart")) || [];
+  console.log(cartStored);
   return cartStored;
 };
 
@@ -29,11 +30,11 @@ function CoffeeCard(props) {
     const initialCart = getCart();
     setCart(initialCart);
   }, []);
-
+ 
   const addtoCart = () => {
+    
     const existingItem = cart?.find((item) => item.name === props.name) || false;
-    console.log(existingItem);
-
+    
     const newCart = existingItem
       ? cart?.map((item) => {
           if (item.name === props.name) {
@@ -42,13 +43,13 @@ function CoffeeCard(props) {
           return item;
         })
       : [...cart, { name: props.name, count: 1 }];
+        // console.log(newCart);
 
     localStorage.setItem("CoffeCart", JSON.stringify(newCart));
 
     setCart(newCart);
-
     setAdded(true);
-    setTimeout(() => setAdded(false), 2000); // !AI
+    setTimeout(() => setAdded(false), 2000); 
     console.log(cart);
   };
 

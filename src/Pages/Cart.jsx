@@ -6,6 +6,10 @@ import CartElement from "../components/Cart/cartElement";
 import { useEffect, useState } from "react";
 import CoffeeAvailable from "../components/CoffeeCard/AvailableCoffees";
 import EmptyCart from "./EmptyCart.jsx"
+import Background1 from "../assets/unsplash1.jpg"
+import Background2 from "../assets/unsplash2.jpg"
+import Background3 from "../assets/unsplash3.jpg"
+import Background4 from "../assets/unsplash4.jpg"
 
 const getCart = () => {
   return JSON.parse(localStorage.getItem("CoffeCart")) || [];
@@ -33,6 +37,20 @@ function Cart() {
     return total;
   };
 
+  const incrementTotal = (amount, name) => {
+    setTotal(total + amount);
+    const newCart = cart.map(item =>
+      item.name === name ? { ...item, count: item.count + 1 } : item
+    );
+    console.log(newCart, amount, name);
+    localStorage.setItem("CoffeCart", JSON.stringify(newCart))
+    console.log(total);
+  }
+
+  const decrementTotal = (amount) => {
+    setTotal(total + amount);
+  }
+
   const removeItem = (coffee)  => {
     const filtered = cart.filter((item) =>item.name !== coffee);
     localStorage.setItem("CoffeCart", JSON.stringify(filtered));
@@ -48,7 +66,10 @@ function Cart() {
                 name={item.name}
                 quantity={item.count}
                 image={CoffeeAvailable[item.name].img}
+                price={CoffeeAvailable[item.name].price}
                 remove={removeItem}
+                incrementTotal={incrementTotal}
+                decrementTotal={decrementTotal}
               />
             );
           })}
@@ -58,8 +79,11 @@ function Cart() {
 
   return (
     <>
-    <Container className="my-5 d-flex justify-content-center">
-    </Container>
+      <img src={Background1}
+      className="img-fluid"
+      style={{width: "100%", height: "60vh", objectFit: "cover"}}
+      >
+      </img>
     <Container className="my-5">
       <Row>
         <div className="pb-3">
@@ -82,6 +106,9 @@ function Cart() {
           {cart.length > 0 ? renderedCart : EmptyCartComponent}
         </Col>
       </Row>
+    </Container>
+    <Container className="my-5">
+      <h1> </h1>
     </Container>
     </>
   );

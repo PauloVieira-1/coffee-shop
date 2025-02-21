@@ -12,12 +12,14 @@ const CartElement = forwardRef((props, ref) => {
 
     const handleIncrement = () => {
       cart.find((item) => item.name === props.name).count = count;
+      props.incrementTotal(props.price, props.name);
       setCount(count + 1);
     };
     
     const handleDecrement = () => {
       if (count > 0) {
         cart.find((item) => item.name === props.name).count = count;
+        props.decrementTotal(props.price, props.name);
         setCount(count - 1);
       }
     };
