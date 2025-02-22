@@ -91,7 +91,7 @@ function Cart() {
           <hr></hr>
         </div>
         <Col>
-          <Card>
+          <Card className="bg-temp2">
             <h1 className="fw-bold mt-3 mb-2 mx-3">Total</h1>
             <h4 className="fw-light mx-3 mt-1 mb-3">              {total}
             </h4>

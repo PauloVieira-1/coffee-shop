@@ -27,8 +27,8 @@ function navBar() {
             <Nav.Link className="text-white mx-2" href="/">
               Home
             </Nav.Link>
-            <Nav.Link className="text-white mx-2" href="#features">
-              Features
+            <Nav.Link className="text-white mx-2" href="/AboutUs">
+              About Us
             </Nav.Link>
             <Nav.Link className="text-white mx-2" href="#pricing">
               Pricing

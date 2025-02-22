@@ -5,11 +5,11 @@ $custom-colors: (
   "primary": #a5825a,
   "white": #f5f5f5,
   "temp": #bda385,
+  "temp2": rgb(243, 228, 207),
   "grey": #e0e0e0,
   "dark-grey": #353535,
   "clear": rgba(86, 86, 86, 0.95),
-  "brown-1": rgb(90, 83, 76),
-  
+  "brown-1": rgb(90, 83, 76)
 );
 
 $theme-colors: map-merge($theme-colors, $custom-colors);

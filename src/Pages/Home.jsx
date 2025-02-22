@@ -4,6 +4,7 @@ import CoffeeCard from "../components/CoffeeCard/coffeeCard.jsx";
 import AvailableCoffees from "../components/CoffeeCard/AvailableCoffees.js";
 import ImgDesc from "../components/ImgDesc/ImgDesc.jsx";
 import Navbar from "../components/Navbar.jsx";
+import { Link } from "react-router-dom";
 
 const styles = {
   backgroundImage: `url(${Coffee})`,
@@ -45,12 +46,15 @@ function Home() {
                 >
                   <h4 className="fw-bold text-center d-block pt-1">Shop Now</h4>
                 </Button>
-                <Button
-                  id="my-button-2"
-                  className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4"
-                >
-                  <h4 className="fw-bold text-center d-block pt-1">About Us</h4>
-                </Button>
+                <Link to="/AboutUs">
+                  <Button
+
+                    id="my-button-2"
+                    className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4"
+                  >
+                    <h4 className="fw-bold text-center d-block pt-1">About Us</h4>
+                  </Button>
+                </Link>
               </Col>
             </Row>
           </Container>
