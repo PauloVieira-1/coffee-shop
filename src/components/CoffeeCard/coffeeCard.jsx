@@ -88,7 +88,7 @@ function CoffeeCard(props) {
     <>
     <div
       style={cardStyle}
-      className="card text-start bg-white text-black d-flex align-items-center justify-content-center shadow1 image-container"
+      className="card text-start bg-white text-black d-flex align-items-center justify-content-center shadow1 img-effect image-container"
       >
         <Row className=" w-100 pe-3 text-center">
           <Col className="d-flex justify-content-center ps-5 pe-0" xs={10}>
@@ -98,7 +98,7 @@ function CoffeeCard(props) {
             <img
               src={Question}
               alt="question"
-              className="question img-fluid img-effect hover-image"
+              className="question img-fluid hover-image"
               style={{ width: "25px", height: "25px" }}
               onClick={() => setShow(true)}
             />

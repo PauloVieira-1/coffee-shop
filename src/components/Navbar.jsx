@@ -34,9 +34,11 @@ function navBar() {
               Pricing
             </Nav.Link>
           </Nav>
+          <Link to="/shop">
           <Button variant="primary text-white" className="rounded-3 px-5">
             Shop
           </Button>
+          </Link>
           <Link
             className="mx-3 d-none d-md-none d-lg-block "
             to={"/cart"}

@@ -2,8 +2,15 @@ import { Col, Container, Row } from "react-bootstrap";
 import CoffeeCup from "../assets/unsplash7.jpg"
 import CoffeePlaceholder from "../assets/unsplash6.jpg"
 import CarouselComponent from "../components/other/Carousel";
+import { useEffect
+ } from "react";
 
 function AboutUs() {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
+
     return (
         <> 
         <div>
