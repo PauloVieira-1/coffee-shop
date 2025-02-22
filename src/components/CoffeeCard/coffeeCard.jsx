@@ -94,7 +94,7 @@ function CoffeeCard(props) {
           <Col className="d-flex justify-content-center ps-5 pe-0" xs={10}>
       <h2 className="fw-bold mt-3 mb-3 ">{props.name}</h2>
           </Col>
-          <Col className="d-flex justify-content-end ">
+          <Col className="d-flex justify-content-end  align-items-center">
             <img
               src={Question}
               alt="question"

@@ -27,7 +27,9 @@ function ShopCard(props){
                 ))}
                 </ul>
                 <div className="d-flex justify-content-center">
-                <Button className={`w-50 rounded-4 ${added ? "added" : "btn-dark"}`} variant="dark" onClick={() => {props.addItem(props.coffee); changeColor()}}>{added ? "Added" : "Buy"}</Button>
+                <Button className={`w-50 rounded-3 ${added ? "added" : "btn-dark"}`} variant="dark" onClick={() => {props.addItem(props.coffee); changeColor()}}>{added ? "Added" : "Buy"}
+                    
+                </Button>
                 </div>
             </Row>
         </Container>

@@ -38,7 +38,7 @@ function Home() {
                 <h1 className="text-white fw-bold display-2 mb-4">
                   The Best <br /> Ugandan Coffee
                 </h1>
-                <p className="text-white">Roasted by our expert coffee roasters based in Uganda. The flavors of home <br />distilled into our unique coffee blends</p>
+                <p className="text-white">Roasted by expert coffee roasters based in Uganda. The flavors of Africa <br />distilled into our unique coffee blends</p>
                 <Button
                   id="my-button"
                   className="btn btn-white rounded-3 px-5 mt-4 text-center"
@@ -59,12 +59,13 @@ function Home() {
             </Row>
           </Container>
         </main>
-        <div className="mt-5 mb-5" >
-          <div className="text-center text-dark-grey mt-5 mb-3">
+        <div className="mt-5 mb-3" >
+          <div className=" d-flex align-items-center justify-content-center flex-column text-center text-dark-grey mt-5 mb-3">
             <h6>Free Delivery</h6>
             <h2 className="fw-bold display-6">
               Choose a Coffee From Our  Selection
             </h2>
+            <hr className="w-50 mt-5" style={{borderColor: "black", borderWidth: "2px"}}></hr>
           </div>
         </div>
         <Container

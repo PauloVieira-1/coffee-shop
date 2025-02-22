@@ -17,8 +17,8 @@ function navBar() {
     <>
       <Navbar id="nav" className="navbar-nav  mx-auto pb-2 text-white shadow1 mt-0 position-fixed w-100">
         <Container>
-          <Navbar.Brand className="text-white" href="#home">
-            COFFEE
+          <Navbar.Brand className="text-white" href="/">
+            Dutch Pearl Coffee
           </Navbar.Brand>
           <Nav
             style={additionalStyling}
@@ -29,9 +29,6 @@ function navBar() {
             </Nav.Link>
             <Nav.Link className="text-white mx-2" href="/AboutUs">
               About Us
-            </Nav.Link>
-            <Nav.Link className="text-white mx-2" href="#pricing">
-              Pricing
             </Nav.Link>
           </Nav>
           <Link to="/shop">
