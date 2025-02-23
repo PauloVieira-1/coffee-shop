@@ -1,10 +1,9 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { forwardRef, useImperativeHandle } from "react";
 import Minus from "../../assets/minus.svg";
 
-const CartElement = forwardRef((props, ref) => {
+const CartElement = (props) => {
 
   const [count, setCount] = useState(props.quantity);
 
@@ -17,7 +16,7 @@ const CartElement = forwardRef((props, ref) => {
     };
     
     const handleDecrement = () => {
-      if (count > 0) {
+      if (count > 1) {
         cart.find((item) => item.name === props.name).count = count;
         props.decrementTotal(props.price, props.name);
         setCount(count - 1);
@@ -95,6 +94,6 @@ const CartElement = forwardRef((props, ref) => {
       </Row>
     </Container>
   );
-});
+};
 
 export default CartElement;

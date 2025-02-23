@@ -42,12 +42,19 @@ function Cart() {
     const newCart = cart.map(item =>
       item.name === name ? { ...item, count: item.count + 1 } : item
     );
-    console.log(newCart, amount, name);
     localStorage.setItem("CoffeCart", JSON.stringify(newCart))
-    console.log(total);
+    setCart(newCart);
   }
 
-  const decrementTotal = (amount) => {
+  const decrementTotal = (amount, name) => {
+    const newCart = cart.map((item) => {
+      if (item.name === name) {
+        return { ...item, count : item.count - 1 };
+      }
+      return item;
+    })
+    localStorage.setItem("CoffeCart", JSON.stringify(newCart))
+    setCart(newCart);
     setTotal(total + amount);
   }
 
@@ -74,7 +81,7 @@ function Cart() {
             );
           })}
   </div>
-
+ 
   const EmptyCartComponent = <EmptyCart />
 
   return (

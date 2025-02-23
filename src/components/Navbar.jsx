@@ -17,7 +17,7 @@ function navBar() {
     <>
       <Navbar id="nav" className="navbar-nav  mx-auto pb-2 text-white shadow1 mt-0 position-fixed w-100">
         <Container>
-          <Navbar.Brand className="text-white" href="/">
+          <Navbar.Brand className="text-white fw-bold" href="/">
             Dutch Pearl Coffee
           </Navbar.Brand>
           <Nav
