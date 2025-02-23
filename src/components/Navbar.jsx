@@ -17,7 +17,7 @@ function navBar() {
     <>
       <Navbar id="nav" className="navbar-nav  mx-auto pb-2 text-white shadow1 mt-0 position-fixed w-100">
         <Container>
-          <Navbar.Brand className="text-white fw-bold" href="/">
+          <Navbar.Brand className="text-white fw-bold d-none d-sm-block" href="/">
             Dutch Pearl Coffee
           </Navbar.Brand>
           <Nav
@@ -28,7 +28,7 @@ function navBar() {
               Home
             </Nav.Link>
             <Nav.Link className="text-white mx-2" href="/AboutUs">
-              About Us
+              About
             </Nav.Link>
           </Nav>
           <Link to="/shop">
@@ -37,7 +37,7 @@ function navBar() {
           </Button>
           </Link>
           <Link
-            className="mx-3 d-none d-md-none d-lg-block "
+            className="mx-3"
             to={"/cart"}
             onClick={() => window.scrollTo(0, 0)}
           >

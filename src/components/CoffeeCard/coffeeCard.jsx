@@ -90,7 +90,7 @@ function CoffeeCard(props) {
       style={cardStyle}
       className="card text-start bg-white text-black d-flex align-items-center justify-content-center shadow1 img-effect image-container"
       >
-        <Row className=" w-100 pe-3 text-center">
+        <Row className=" w-100 pe-0 text-center">
           <Col className="d-flex justify-content-center ps-5 pe-0" xs={10}>
       <h2 className="fw-bold mt-3 mb-3 ">{props.name}</h2>
           </Col>

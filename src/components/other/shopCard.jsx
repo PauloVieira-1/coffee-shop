@@ -13,7 +13,7 @@ function ShopCard(props){
     }
 
     return (
-        <Container className="my-1 mx-3 card p-3 rounded-4 img-effect" style={{width: "18rem"}}>
+        <Container className="my-1 mx-3 card p-3 rounded-4 img-effect mb-5" style={{width: "18rem"}}>
             <Row>
                 <h2 className="fw-bold">{props.coffee}</h2>
                 <p>{props.underline}</p>

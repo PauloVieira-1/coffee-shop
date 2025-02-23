@@ -6,7 +6,7 @@ function ImgDesc() {
   return (
     <Container fluid className="mt-5 mx-0 mb-5 text-white">
       <Row>
-        <Col className="" md={4} style={{ height: "600px" }}>
+        <Col className="mb-5" md={4} style={{ height: "600px" }}>
           <img
             src={Flower}
             alt=""
@@ -15,7 +15,7 @@ function ImgDesc() {
           ></img>
         </Col>
         <Col
-          className="bg-brown-1 mx-0 p-5 d-flex justify-content-center text-start flex-column "
+          className="bg-brown-1 mx-0 p-5 d-flex justify-content-center text-start flex-column mb-5"
           md={8}
         >
           <h1 className="display-3 ms-5 my-4 fw-light align-middle">Our Story</h1>
@@ -27,7 +27,7 @@ function ImgDesc() {
           </p>
           <Row className="position-relative bottom-0 end-0 pt-5 ps-2">
           <Link to="/AboutUs">
-            <Button id="my-button-2" className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-5 mt-5 " style={{ width: "13vw", height: "5vh"}} onClick={() => window.scrollTo(0, 0)}> About Us</Button>
+            <Button id="my-button-2" className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-5 mt-5 " style={{ width: "150px", height: "5vh"}} onClick={() => window.scrollTo(0, 0)}> About Us</Button>
         </ Link>
           </Row>
         </Col>
