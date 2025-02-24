@@ -19,11 +19,11 @@ function AboutUs() {
       style={{width: "100%", height: "650px", objectFit: "cover"}}
       >
       </img>
-      <div className=" text-white position-absolute" style={{top: "210px", left: "50px"}}>
+      <div className=" text-white position-absolute transition-fast" style={{top: "210px", left: "50px"}}>
           <h1>About Us</h1>
             <p>Explore our story and commitment to quality</p>
       </div>
-      <div className="text-dark position-absolute d-flex flex-column align-items-end" style={{top: "360px", right: "50px"}}>
+      <div className="text-dark position-absolute d-flex flex-column align-items-end transition-fast-right" style={{top: "360px", right: "50px"}}>
         <h1>Our Story</h1>
         <p>Discover our journey and passion for coffee</p>
       </div>
@@ -34,11 +34,11 @@ function AboutUs() {
       style={{width: "100%", height: "650px", objectFit: "cover"}}
       >
       </img>
-      <div className=" text-white position-absolute" style={{top: "110px", left: "50px"}}>
+      <div className=" text-white position-absolute transition-fast" style={{top: "110px", left: "50px"}}>
           <h1>About Us</h1>
             <p>Explore our story and our commitment to quality</p>
       </div>
-      <div className="text-dark position-absolute d-flex flex-column align-items-end" style={{top: "440px", right: "50px"}}>
+      <div className="text-dark position-absolute d-flex flex-column align-items-end transition-fast-right" style={{top: "440px", right: "50px"}}>
         <h1>Our Story</h1>
         <p>Discover our journey and passion for coffee</p>
       </div>

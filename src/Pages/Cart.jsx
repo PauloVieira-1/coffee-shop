@@ -87,7 +87,7 @@ function Cart() {
   return (
     <>
       <img src={Background1}
-      className="img-fluid"
+      className="img-fluid transition-top"
       style={{width: "100%", height: "60vh", objectFit: "cover"}}
       >
       </img>

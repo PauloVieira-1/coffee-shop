@@ -5,6 +5,8 @@ import AvailableCoffees from "../components/CoffeeCard/AvailableCoffees.js";
 import ImgDesc from "../components/ImgDesc/ImgDesc.jsx";
 import Navbar from "../components/Navbar.jsx";
 import { Link } from "react-router-dom";
+import { useEffect, useMemo, useRef } from "react";
+
 
 const styles = {
   // backgroundImage: `url(${Coffee})`,
@@ -28,6 +30,43 @@ const bg = {
 };
 
 function Home() {
+
+
+  const headingRef = useRef(null);
+  const paraRef = useRef(null);
+
+  const revealRefs = useMemo(() => [headingRef, paraRef], []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.target === headingRef.current && entry.isIntersecting) {
+          entry.target.classList.add("transition-fast");
+        }
+
+        if (entry.target === paraRef.current && entry.isIntersecting) {
+          entry.target.classList.add("transition-slow");
+        }
+      });
+    });
+
+    revealRefs.forEach((ref) => {
+      if (ref) {
+        observer.observe(ref.current);
+      }
+    });
+
+    return () => {
+      revealRefs.forEach((ref) => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      });
+    };
+  }, [revealRefs]);
+
+
+
   return (
     <>
       <div>
@@ -51,7 +90,7 @@ function Home() {
                 </p>
                 <Button
                   id="my-button"
-                  className="btn btn-white rounded-3 px-5 mt-4 text-center"
+                  className="btn btn-white rounded-3 px-5 mt-4 text-center transition-fast"
                   onClick={() => window.scrollTo(0, 750)}
                 >
                   <h4 className="fw-bold text-center d-block pt-1">Shop Now</h4>
@@ -60,7 +99,7 @@ function Home() {
                 <Button
 
 id="my-button-2"
-className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4"
+className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4 transition-fast"
 >
 <h4 className="fw-bold text-center d-block pt-1">About Us</h4>
 </Button>
@@ -105,8 +144,8 @@ className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4"
       <main className="d-flex justify-content-center mb-4 mx-0 w-100">
         <div className="mb-5 position-relative">
           <div className="mt-5 mb-3 text-center">
-            <h6>Free Delivery</h6>
-            <h2 className="fw-bold display-6">Choose a Coffee From Our Selection</h2>
+            <h6 ref={paraRef}>Free Delivery</h6>
+            <h2 className="fw-bold display-6" ref={headingRef}>Choose a Coffee From Our Selection</h2>
             <hr className="w-50 mt-5 text-center mx-auto" style={{ borderColor: "black", borderWidth: "2px" }} />
           </div>
 

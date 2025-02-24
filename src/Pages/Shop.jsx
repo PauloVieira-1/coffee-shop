@@ -28,7 +28,7 @@ function Shop() {
     <>
       <img
         src={Background}
-        className="img-fluid"
+        className="img-fluid transition-top"
         style={{ width: "100%", height: "60vh", objectFit: "cover" }}
       />
       <Container className="my-5">
