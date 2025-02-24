@@ -15,9 +15,15 @@ function navBar() {
 
   return (
     <>
-      <Navbar id="nav" className="navbar-nav  mx-auto pb-2 text-white shadow1 mt-0 position-fixed w-100">
+      <Navbar
+        id="nav"
+        className="navbar-nav  mx-auto pb-2 text-white shadow1 mt-0 position-fixed w-100"
+      >
         <Container>
-          <Navbar.Brand className="text-white fw-bold d-none d-sm-block" href="/">
+          <Navbar.Brand
+            className="text-white fw-bold d-none d-sm-block"
+            href="/"
+          >
             Dutch Pearl Coffee
           </Navbar.Brand>
           <Nav
@@ -32,9 +38,9 @@ function navBar() {
             </Nav.Link>
           </Nav>
           <Link to="/shop">
-          <Button variant="primary text-white" className="rounded-3 px-5">
-            Shop
-          </Button>
+            <Button variant="primary text-white" className="rounded-3 px-5">
+              Shop
+            </Button>
           </Link>
           <Link
             className="mx-3"

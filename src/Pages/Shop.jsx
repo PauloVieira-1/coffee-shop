@@ -5,24 +5,31 @@ import AvailableCoffees from "../components/CoffeeCard/AvailableCoffees";
 import { useEffect, useState } from "react";
 
 function Shop() {
+  const [cart, setCart] = useState([]);
 
-    const [cart, setCart] = useState([]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
-    useEffect(() => {
-        let cart = JSON.parse(localStorage.getItem("CoffeCart")) || [];
-        setCart(cart);
-      }, []);
+  useEffect(() => {
+    let cart = JSON.parse(localStorage.getItem("CoffeCart")) || [];
+    setCart(cart);
+  }, []);
 
-    const addItem = (name) => {
-        const ExistingItem = cart ? cart.find((item) => item.name === name) : false;
+  const addItem = (name) => {
+    const ExistingItem = cart ? cart.find((item) => item.name === name) : false;
 
-        const newCart = ExistingItem ? cart.map((item) =>item.name === name ? {...item, count: item.count + 1} : item) : [...cart, {name: name, count: 1}]
-      console.log(newCart);
-        localStorage.setItem("CoffeCart", JSON.stringify(newCart))
-        setCart(newCart);
-    }
+    const newCart = ExistingItem
+      ? cart.map((item) =>
+          item.name === name ? { ...item, count: item.count + 1 } : item,
+        )
+      : [...cart, { name: name, count: 1 }];
+    console.log(newCart);
+    localStorage.setItem("CoffeCart", JSON.stringify(newCart));
+    setCart(newCart);
+  };
 
-    //        const amount = cart.reduce((acc, item) => item.name === name ? acc + item.count : acc, 0) + 1;
+  //        const amount = cart.reduce((acc, item) => item.name === name ? acc + item.count : acc, 0) + 1;
 
   return (
     <>
@@ -46,13 +53,19 @@ function Shop() {
       </Container>
       <Container className="d-flex justify-content-center mb-5">
         <Row className="mb-5">
-            {Object.keys(AvailableCoffees).map((coffee) => (
-              <Col>
-                <ShopCard price={AvailableCoffees[coffee].price} coffee={coffee} image={AvailableCoffees[coffee].img} specifications={AvailableCoffees[coffee].specs}  underline={AvailableCoffees[coffee].underline} addItem={addItem}/>
-              </Col>
-            ))}
-          <Col>
-          </Col>
+          {Object.keys(AvailableCoffees).map((coffee) => (
+            <Col>
+              <ShopCard
+                price={AvailableCoffees[coffee].price}
+                coffee={coffee}
+                image={AvailableCoffees[coffee].img}
+                specifications={AvailableCoffees[coffee].specs}
+                underline={AvailableCoffees[coffee].underline}
+                addItem={addItem}
+              />
+            </Col>
+          ))}
+          <Col></Col>
         </Row>
       </Container>
     </>

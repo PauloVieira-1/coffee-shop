@@ -48,7 +48,8 @@
 }
 
 body {
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif!important;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif !important;
 }
 
 #my-button-2 {
@@ -79,7 +80,7 @@ body {
   transition: top 0.3s;
 }
 
-.transition-fast-right{
+.transition-fast-right {
   animation-name: transition-to-right;
   animation-duration: 1.4s;
   animation-iteration-count: 1;
@@ -118,6 +119,4 @@ body {
   to {
     transform: translateY(0);
   }
-  
 }
-

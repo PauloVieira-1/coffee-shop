@@ -9,7 +9,7 @@ $custom-colors: (
   "grey": #e0e0e0,
   "dark-grey": #353535,
   "clear": rgba(86, 86, 86, 0.95),
-  "brown-1": rgb(90, 83, 76)
+  "brown-1": rgb(90, 83, 76),
 );
 
 $theme-colors: map-merge($theme-colors, $custom-colors);
@@ -17,7 +17,3 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 $primary: #3f75a0;
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
-  
-
-
-

@@ -7,7 +7,6 @@ import Navbar from "../components/Navbar.jsx";
 import { Link } from "react-router-dom";
 import { useEffect, useMemo, useRef } from "react";
 
-
 const styles = {
   // backgroundImage: `url(${Coffee})`,
   backgroundRepeat: "no-repeat",
@@ -30,8 +29,6 @@ const bg = {
 };
 
 function Home() {
-
-
   const headingRef = useRef(null);
   const paraRef = useRef(null);
 
@@ -65,8 +62,6 @@ function Home() {
     };
   }, [revealRefs]);
 
-
-
   return (
     <>
       <div>
@@ -76,8 +71,11 @@ function Home() {
           alt="coffee"
           style={{ height: "100vh", objectFit: "cover" }}
         />
-        
-        <div className="text-white position-absolute w-100 d-none d-lg-block" style={{ top: "330px", left: "50px" }}>
+
+        <div
+          className="text-white position-absolute w-100 d-none d-lg-block"
+          style={{ top: "330px", left: "50px" }}
+        >
           <Container className="d-flex align-items-center">
             <Row className="w-100">
               <Col className=" ps-5 ms-4">
@@ -85,7 +83,8 @@ function Home() {
                   The Best <br /> Ugandan Coffee
                 </h1>
                 <p className="text-white">
-                  Roasted by expert coffee roasters based in Uganda. The flavors of Africa
+                  Roasted by expert coffee roasters based in Uganda. The flavors
+                  of Africa
                   <br /> distilled into our unique coffee blends
                 </p>
                 <Button
@@ -96,20 +95,24 @@ function Home() {
                   <h4 className="fw-bold text-center d-block pt-1">Shop Now</h4>
                 </Button>
                 <Link to="/AboutUs">
-                <Button
-
-id="my-button-2"
-className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4 transition-fast"
->
-<h4 className="fw-bold text-center d-block pt-1">About Us</h4>
-</Button>
+                  <Button
+                    id="my-button-2"
+                    className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4 transition-fast"
+                  >
+                    <h4 className="fw-bold text-center d-block pt-1">
+                      About Us
+                    </h4>
+                  </Button>
                 </Link>
               </Col>
             </Row>
           </Container>
         </div>
 
-        <div className="text-white position-absolute w-100 d-block d-lg-none" style={{ top: "250px", left: "10px" }}>
+        <div
+          className="text-white position-absolute w-100 d-block d-lg-none"
+          style={{ top: "250px", left: "10px" }}
+        >
           <Container className="d-flex align-items-center justify-content-center">
             <Row>
               <Col className="text-center ps-3 ms-4">
@@ -117,7 +120,8 @@ className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4 transition
                   The Best <br /> Ugandan Coffee
                 </h3>
                 <p className="text-white">
-                  Roasted by expert coffee roasters based in Uganda. The flavors of Africa distilled into our unique coffee blends
+                  Roasted by expert coffee roasters based in Uganda. The flavors
+                  of Africa distilled into our unique coffee blends
                 </p>
                 <Button
                   id="my-button"
@@ -127,13 +131,14 @@ className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4 transition
                   <h4 className="fw-bold text-center d-block pt-1">Shop Now</h4>
                 </Button>
                 <Link to="/AboutUs">
-                <Button
-
-id="my-button-2"
-className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4"
->
-<h4 className="fw-bold text-center d-block pt-1">About Us</h4>
-</Button>
+                  <Button
+                    id="my-button-2"
+                    className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4"
+                  >
+                    <h4 className="fw-bold text-center d-block pt-1">
+                      About Us
+                    </h4>
+                  </Button>
                 </Link>
               </Col>
             </Row>
@@ -145,14 +150,22 @@ className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4"
         <div className="mb-5 position-relative">
           <div className="mt-5 mb-3 text-center">
             <h6 ref={paraRef}>Free Delivery</h6>
-            <h2 className="fw-bold display-6" ref={headingRef}>Choose a Coffee From Our Selection</h2>
-            <hr className="w-50 mt-5 text-center mx-auto" style={{ borderColor: "black", borderWidth: "2px" }} />
+            <h2 className="fw-bold display-6" ref={headingRef}>
+              Choose a Coffee From Our Selection
+            </h2>
+            <hr
+              className="w-50 mt-5 text-center mx-auto"
+              style={{ borderColor: "black", borderWidth: "2px" }}
+            />
           </div>
 
           <Container fluidclassName="mb-5 mt-3 d-flex justify-content-center text-center mx-0 w-100">
             <Row className="w-100 d-dlex d-lg-none">
               {Object.keys(AvailableCoffees).map((coffee) => (
-                <Col key={coffee} className="d-flex align-items-center justify-content-center text-center mt-5">
+                <Col
+                  key={coffee}
+                  className="d-flex align-items-center justify-content-center text-center mt-5"
+                >
                   <CoffeeCard
                     name={AvailableCoffees[coffee].name}
                     specs={AvailableCoffees[coffee].specs}
@@ -163,7 +176,11 @@ className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4"
             </Row>
             <Row className="w-100 d-none d-lg-flex">
               {Object.keys(AvailableCoffees).map((coffee) => (
-                <Col xs={4} key={coffee} className="d-flex align-items-center justify-content-center text-center mt-5">
+                <Col
+                  xs={4}
+                  key={coffee}
+                  className="d-flex align-items-center justify-content-center text-center mt-5"
+                >
                   <CoffeeCard
                     name={AvailableCoffees[coffee].name}
                     specs={AvailableCoffees[coffee].specs}
@@ -175,14 +192,13 @@ className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4"
           </Container>
         </div>
       </main>
-        <Row className="justify-content-center mt-5">
-          <Col className="d-flex align-items-center justify-content-center text-center">
-            <ImgDesc />
-          </Col>
-        </Row>
+      <Row className="justify-content-center mt-5">
+        <Col className="d-flex align-items-center justify-content-center text-center">
+          <ImgDesc />
+        </Col>
+      </Row>
     </>
   );
 }
-
 
 export default Home;
