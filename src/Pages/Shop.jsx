@@ -9,7 +9,7 @@ function Shop() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, []);
 
   useEffect(() => {
     let cart = JSON.parse(localStorage.getItem("CoffeCart")) || [];

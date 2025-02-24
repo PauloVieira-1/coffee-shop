@@ -92,12 +92,15 @@ function AboutUs() {
             xl={5}
             className="text-center d-none d-md-none d-lg-block d-flex align-items-center"
           >
-            <div className="card bg-dark">
+            <div className="card bg-dark ">
+              <div>
+                <h1 style={{height: "2vh"}}></h1>
+              </div>
               <img
                 src={CoffeePlaceholder}
                 className="card-img-top"
                 alt="..."
-                style={{ width: "50vh", height: "50vh", objectFit: "cover" }}
+                style={{ width: "100%", height: "50vh", objectFit: "cover" }}
               ></img>
             </div>
           </Col>
@@ -112,8 +115,11 @@ function AboutUs() {
                 src={CoffeePlaceholder}
                 className="card-img-top"
                 alt="..."
-                style={{ width: "50vh", height: "50vh", objectFit: "cover" }}
+                style={{ width: "100%", height: "50vh", objectFit: "cover" }}
               ></img>
+                     <div>
+                <h1 style={{height: "2vh"}}></h1>
+              </div>
             </div>
           </Col>
           <Col
@@ -121,7 +127,7 @@ function AboutUs() {
             md={7}
             className="pe-5 d-flex justify-content-center flex-column mb-5"
           >
-            <h1 className="fw-bold mb-5 ps-5">Our Mission </h1>
+            <h1 className="fw-bold mb-5 ps-5 mt-5">Our Mission </h1>
             <p className="fw-light lh-lg ps-5">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
               velit, est, aperiam officiis incidunt quisquam recusandae error

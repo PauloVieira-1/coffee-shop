@@ -104,7 +104,7 @@ function Cart() {
               <h4 className="fw-light mx-3 mt-1 mb-3"> {total}</h4>
               <div className="m-3">
                 <Link to="/checkout">
-                  <Button>Checkout</Button>
+                  <Button className="text-white">Checkout</Button>
                 </Link>
               </div>
             </Card>
