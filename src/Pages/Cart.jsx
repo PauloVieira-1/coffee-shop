@@ -15,7 +15,7 @@ const getCart = () => {
   return JSON.parse(localStorage.getItem("CoffeCart")) || [];
 };
 
-function Cart() {
+function Cart(props) {
   const [cart, setCart] = useState(getCart());
   const [total, setTotal] = useState(0);
 
@@ -34,6 +34,8 @@ function Cart() {
     let total = cartCurrent.reduce((amount, item) => {
       return amount + CoffeeAvailable[item.name].price * item.count;
     }, 0);
+
+    props.getTotal(total);
     return total;
   };
 

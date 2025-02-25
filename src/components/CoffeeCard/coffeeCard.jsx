@@ -21,7 +21,6 @@ const imgStyle = {
 
 const getCart = () => {
   const cartStored = JSON.parse(localStorage.getItem("CoffeCart")) || [];
-  console.log(cartStored);
   return cartStored;
 };
 
@@ -49,14 +48,12 @@ function CoffeeCard(props) {
           return item;
         })
       : [...cart, { name: props.name, count: 1 }];
-    // console.log(newCart);
 
     localStorage.setItem("CoffeCart", JSON.stringify(newCart));
 
     setCart(newCart);
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
-    console.log(cart);
   };
 
   const addButton = (
