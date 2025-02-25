@@ -20,22 +20,21 @@ function navBar() {
         className="navbar-nav  mx-auto pb-2 text-white shadow1 mt-0 position-fixed w-100"
       >
         <Container>
-          <Navbar.Brand
-            className="text-white fw-bold d-none d-sm-block"
-            href="/"
-          >
+        <Navbar.Brand >
+          <Link to={"/"} className=" fw-bold text-white style-none underline-none text-decoration-none">
             Dutch Pearl Coffee
-          </Navbar.Brand>
+          </Link>
+        </Navbar.Brand>
           <Nav
             style={additionalStyling}
             className="m-auto d-flex text-align-center text-white my-1"
           >
-            <Nav.Link className="text-white mx-2" href="/">
+            <Link className="text-white mx-2 text-decoration-none mx-2 px-2" to={"/"}>
               Home
-            </Nav.Link>
-            <Nav.Link className="text-white mx-2" href="/AboutUs">
+            </Link>
+            <Link className="text-white mx-2 text-decoration-none mx-2 px-2" to={"/AboutUs"}>
               About
-            </Nav.Link>
+            </Link>
           </Nav>
           <Link to="/shop">
             <Button variant="primary text-white" className="rounded-3 px-5">

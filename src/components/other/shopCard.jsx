@@ -3,6 +3,7 @@ import CoffeeExample from "../../assets/coffeeBag.png";
 import { Button } from "react-bootstrap";
 import { useState } from "react";
 
+
 function ShopCard(props) {
   const [added, setAdded] = useState(false);
 
@@ -40,7 +41,7 @@ function ShopCard(props) {
               changeColor();
             }}
           >
-            {added ? "Added" : "Buy"}
+            {added ? "Added" : "Add to Cart"}
           </Button>
         </div>
       </Row>

@@ -35,7 +35,6 @@ function Cart(props) {
       return amount + CoffeeAvailable[item.name].price * item.count;
     }, 0);
 
-    props.getTotal(total);
     return total;
   };
 
@@ -44,6 +43,7 @@ function Cart(props) {
     const newCart = cart.map((item) =>
       item.name === name ? { ...item, count: item.count + 1 } : item,
     );
+    // props.setAmount(total + amount);
     localStorage.setItem("CoffeCart", JSON.stringify(newCart));
     setCart(newCart);
   };

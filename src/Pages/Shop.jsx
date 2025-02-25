@@ -52,7 +52,7 @@ function Shop() {
         </Row>
       </Container>
       <Container className="d-flex justify-content-center mb-5">
-        <Row className="mb-5">
+        <Row className="mb-5 d-flex justify-content-center flex-wrap align-items-center">
           {Object.keys(AvailableCoffees).map((coffee) => (
             <Col>
               <ShopCard
