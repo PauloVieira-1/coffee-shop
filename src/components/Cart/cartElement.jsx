@@ -39,7 +39,7 @@ const CartElement = ({ name, price, image, description, quantity, incrementTotal
           className="d-flex flex-column justify-content-center my-3 text-black"
           md={4}
         >
-          <h5 className="fw-bold">{name}</h5>
+          <h5 className="ps-3 fw-bold">{name}</h5>
           <h6 className="fw-light">{description}</h6>
         </Col>
         <Col

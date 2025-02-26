@@ -58,7 +58,7 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-  }, [total]);
+  }, [cart,total]);
 
   const incrementTotal = (amount, name) => {
     const newCart = cart.map((item) =>
