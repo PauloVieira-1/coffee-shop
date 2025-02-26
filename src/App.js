@@ -48,8 +48,45 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-  }, [total]); //
-  
+  }, [total]);
+
+  const incrementTotal = (amount, name) => {
+    const newCart = cart.map((item) =>
+      item.name === name ? { ...item, count: item.count + 1 } : item,
+    );
+    // props.setAmount(total + amount);
+    localStorage.setItem("CoffeCart", JSON.stringify(newCart));
+    setTotal(total + amount);
+  };
+
+  const decrementTotal = (amount, name) => {
+    const newCart = cart.map((item) => {
+      if (item.name === name) {
+        return { ...item, count: item.count - 1 };
+      }
+      return item;
+    });
+    localStorage.setItem("CoffeCart", JSON.stringify(newCart));
+    setTotal(total - amount);
+  };
+
+  const removeItem = (coffee) => {
+    const filtered = cart.filter((item) => item.name !== coffee);
+    localStorage.setItem("CoffeCart", JSON.stringify(filtered));
+  };
+
+  const addItem = (name) => {
+    const ExistingItem = cart ? cart.find((item) => item.name === name) : false;
+
+    const newCart = ExistingItem
+      ? cart.map((item) =>
+          item.name === name ? { ...item, count: item.count + 1 } : item,
+        )
+      : [...cart, { name: name, count: 1 }];
+    console.log(newCart);
+    localStorage.setItem("CoffeCart", JSON.stringify(newCart));
+    setCart(newCart);
+  };
   
   
   if (!clientSecret) {
@@ -80,9 +117,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Cart total={total} setTotal={setTotal} cart={cart} setCart={setCart} decrementTotal={decrementTotal} incrementTotal={incrementTotal} removeItem={removeItem}/>} />
         <Route path="/AboutUs" element={<AboutUs />} />
-        <Route path="/shop" element={<Shop />} />
+        <Route path="/shop" element={<Shop incrementTotal={incrementTotal} addItem={addItem} />} />
         <Route path="/success" element={<Success />} />
         <Route path="/checkout" element={<CheckoutForm />} />
       </Routes>

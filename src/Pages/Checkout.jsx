@@ -3,6 +3,7 @@ import CoffeeBag from "../assets/coffeebag.jpg";
 import { Button } from 'react-bootstrap';
 
 const CheckoutForm = () => {
+
   const stripe = useStripe();
   const elements = useElements();
 

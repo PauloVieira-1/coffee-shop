@@ -4,32 +4,15 @@ import ShopCard from "../components/other/shopCard";
 import AvailableCoffees from "../components/CoffeeCard/AvailableCoffees";
 import { useEffect, useState } from "react";
 
-function Shop() {
-  const [cart, setCart] = useState([]);
+const getCart = () => {
+  return JSON.parse(localStorage.getItem("CoffeCart")) || [];
+}
+function Shop({addItem}) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    let cart = JSON.parse(localStorage.getItem("CoffeCart")) || [];
-    setCart(cart);
-  }, []);
-
-  const addItem = (name) => {
-    const ExistingItem = cart ? cart.find((item) => item.name === name) : false;
-
-    const newCart = ExistingItem
-      ? cart.map((item) =>
-          item.name === name ? { ...item, count: item.count + 1 } : item,
-        )
-      : [...cart, { name: name, count: 1 }];
-    console.log(newCart);
-    localStorage.setItem("CoffeCart", JSON.stringify(newCart));
-    setCart(newCart);
-  };
-
-  //        const amount = cart.reduce((acc, item) => item.name === name ? acc + item.count : acc, 0) + 1;
 
   return (
     <>

@@ -11,60 +11,7 @@ import Background2 from "../assets/unsplash2.jpg";
 import Background3 from "../assets/unsplash3.jpg";
 import Background4 from "../assets/unsplash4.jpg";
 
-const getCart = () => {
-  return JSON.parse(localStorage.getItem("CoffeCart")) || [];
-};
-
-function Cart(props) {
-  const [cart, setCart] = useState(getCart());
-  const [total, setTotal] = useState(0);
-
-  useEffect(() => {
-    localStorage.setItem("CoffeCart", JSON.stringify(cart));
-    setTotal(calculateTotal(cart));
-  }, [cart, total]);
-
-  /**
-   *
-   * @param {Array} cart
-   * @returns {Number}
-   */
-
-  const calculateTotal = (cartCurrent) => {
-    let total = cartCurrent.reduce((amount, item) => {
-      return amount + CoffeeAvailable[item.name].price * item.count;
-    }, 0);
-
-    return total;
-  };
-
-  const incrementTotal = (amount, name) => {
-    setTotal(total + amount);
-    const newCart = cart.map((item) =>
-      item.name === name ? { ...item, count: item.count + 1 } : item,
-    );
-    // props.setAmount(total + amount);
-    localStorage.setItem("CoffeCart", JSON.stringify(newCart));
-    setCart(newCart);
-  };
-
-  const decrementTotal = (amount, name) => {
-    const newCart = cart.map((item) => {
-      if (item.name === name) {
-        return { ...item, count: item.count - 1 };
-      }
-      return item;
-    });
-    localStorage.setItem("CoffeCart", JSON.stringify(newCart));
-    setCart(newCart);
-    setTotal(total + amount);
-  };
-
-  const removeItem = (coffee) => {
-    const filtered = cart.filter((item) => item.name !== coffee);
-    localStorage.setItem("CoffeCart", JSON.stringify(filtered));
-    setCart(filtered);
-  };
+function Cart({ total, setTotal, cart, setCart, incrementTotal, decrementTotal, removeItem}) {
 
   const renderedCart = (
     <div>
@@ -106,7 +53,7 @@ function Cart(props) {
               <h4 className="fw-light mx-3 mt-1 mb-3"> {total}</h4>
               <div className="m-3">
                 <Link to="/checkout">
-                  <Button className="text-white">Checkout</Button>
+                  <Button className="text-white" >Checkout</Button>
                 </Link>
               </div>
             </Card>
