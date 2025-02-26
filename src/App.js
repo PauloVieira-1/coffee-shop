@@ -21,22 +21,32 @@ import AvailableCoffees from "./components/CoffeeCard/AvailableCoffees.js";
 const stripePromise = loadStripe('pk_test_51QsRhPFb6wjMdquvTpSk3zcc0QmBsfpgFj93vYigON7NbdTQiGxNFVXRGpDMocPA6nHE4dayUS3Nrgly5a9g55u4005hIKHfTg');
 
 function App() {
+  
   const [clientSecret, setClientSecret] = useState(null); 
   const [total, setTotal]  = useState(1);
   const [cart, setCart] = useState([]);
 
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("CoffeCart"));
+    const storedCart = JSON.parse(localStorage.getItem("CoffeeCart"));
 
     if (storedCart) {
       setCart(storedCart);
-      let totalAmount = storedCart?.reduce((amount, item) => {
-        return amount + AvailableCoffees[item.name].price * item.count;
-      }, 0) || 3 * 100;
-      setTotal(totalAmount);
+      setTotal(calculateTotal())
     }
   }, []);
+
+  useEffect(() => {
+    calculateTotal();
+  }, [cart]);
+
+  const calculateTotal = () => {
+    let totalAmount = cart?.reduce((amount, item) => {
+      return amount + AvailableCoffees[item.name].price * item.count;
+    }, 0) || 0;
+    setTotal(totalAmount);
+    return totalAmount;
+  };
 
   useEffect(() => {
     fetch("http://localhost:80/create-payment-intent", {
@@ -66,13 +76,15 @@ function App() {
       }
       return item;
     });
-    localStorage.setItem("CoffeCart", JSON.stringify(newCart));
+    localStorage.setItem("CoffeeCart", JSON.stringify(newCart));
     setTotal(total - amount);
   };
 
   const removeItem = (coffee) => {
     const filtered = cart.filter((item) => item.name !== coffee);
-    localStorage.setItem("CoffeCart", JSON.stringify(filtered));
+    localStorage.setItem("CoffeeCart", JSON.stringify(filtered));
+    setCart(filtered);
+    setTotal(calculateTotal());
   };
 
   const addItem = (name) => {
@@ -84,7 +96,7 @@ function App() {
         )
       : [...cart, { name: name, count: 1 }];
     console.log(newCart);
-    localStorage.setItem("CoffeCart", JSON.stringify(newCart));
+    localStorage.setItem("CoffeeCart", JSON.stringify(newCart));
     setCart(newCart);
   };
   
@@ -117,7 +129,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart total={total} setTotal={setTotal} cart={cart} setCart={setCart} decrementTotal={decrementTotal} incrementTotal={incrementTotal} removeItem={removeItem}/>} />
+        <Route path="/cart" element={<Cart total={total} setTotal={setTotal} cart={cart} setCart={setCart} decrementTotal={decrementTotal} incrementTotal={incrementTotal} removeItem={removeItem} addItem={addItem}/>} />
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/shop" element={<Shop incrementTotal={incrementTotal} addItem={addItem} />} />
         <Route path="/success" element={<Success />} />

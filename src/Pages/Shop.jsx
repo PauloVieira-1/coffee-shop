@@ -2,11 +2,9 @@ import { Container, Row, Col } from "react-bootstrap";
 import Background from "../assets/unsplash9.jpg";
 import ShopCard from "../components/other/shopCard";
 import AvailableCoffees from "../components/CoffeeCard/AvailableCoffees";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-const getCart = () => {
-  return JSON.parse(localStorage.getItem("CoffeCart")) || [];
-}
+
 function Shop({addItem}) {
 
   useEffect(() => {

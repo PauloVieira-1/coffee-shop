@@ -11,7 +11,7 @@ import Background2 from "../assets/unsplash2.jpg";
 import Background3 from "../assets/unsplash3.jpg";
 import Background4 from "../assets/unsplash4.jpg";
 
-function Cart({ total, cart, incrementTotal, decrementTotal, removeItem}) {
+function Cart({ total, cart, incrementTotal, decrementTotal, removeItem, addItem }) {
 
   const renderedCart = (
     <div>
@@ -23,9 +23,11 @@ function Cart({ total, cart, incrementTotal, decrementTotal, removeItem}) {
             quantity={item.count}
             image={CoffeeAvailable[item.name].img}
             price={CoffeeAvailable[item.name].price}
-            remove={removeItem}
+            removeItem={removeItem}
             incrementTotal={incrementTotal}
             decrementTotal={decrementTotal}
+            addItem={addItem}
+            cart={cart}
           />
         );
       })}
