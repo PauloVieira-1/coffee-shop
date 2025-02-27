@@ -7,13 +7,13 @@ const CartElement = ({ name, price, image, description, quantity, incrementTotal
   const [count, setCount] = useState(quantity);
 
   const handleIncrement = () => {
-    incrementTotal(price, name);
+    incrementTotal(name);
     setCount(count + 1);
   };
 
   const handleDecrement = () => {
     if (count > 1) {
-      decrementTotal(price, name);
+      decrementTotal(name);
       setCount(count - 1);
     }
   };

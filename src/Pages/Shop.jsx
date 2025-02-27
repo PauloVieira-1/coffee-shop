@@ -2,15 +2,10 @@ import { Container, Row, Col } from "react-bootstrap";
 import Background from "../assets/unsplash9.jpg";
 import ShopCard from "../components/other/shopCard";
 import AvailableCoffees from "../components/CoffeeCard/AvailableCoffees";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 
 function Shop({addItem}) {
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
 
   return (
     <>

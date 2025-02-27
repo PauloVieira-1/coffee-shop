@@ -11,8 +11,11 @@ import Background2 from "../assets/unsplash2.jpg";
 import Background3 from "../assets/unsplash3.jpg";
 import Background4 from "../assets/unsplash4.jpg";
 
-function Cart({ total, cart, incrementTotal, decrementTotal, removeItem, addItem }) {
+function Cart({ total, cart, incrementTotal, decrementTotal, removeItem, addItem, animations }) {
 
+  useEffect(() => {
+    console.log(animations)
+  })
   const renderedCart = (
     <div>
       {cart.map((item) => {
@@ -40,7 +43,7 @@ function Cart({ total, cart, incrementTotal, decrementTotal, removeItem, addItem
     <>
       <img
         src={Background1}
-        className="img-fluid transition-top"
+        className={animations ? "img-fluid transition-top" : "img-fluid"}
         style={{ width: "100%", height: "60vh", objectFit: "cover" }}
       ></img>
       <Container className="my-5">

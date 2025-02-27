@@ -14,7 +14,7 @@ import Success from "./Pages/Success.jsx";
 import CheckoutForm from "./Pages/Checkout.jsx";
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import AvailableCoffees from "./components/CoffeeCard/AvailableCoffees.js";
 
 
@@ -25,6 +25,18 @@ function App() {
   const [clientSecret, setClientSecret] = useState(null); 
   const [total, setTotal]  = useState(1);
   const [cart, setCart] = useState([]);
+  const [animations, setAnimations] = useState(true);
+
+  const hasMounted = useRef(false);
+
+  useEffect(() => {
+
+    if (!hasMounted.current) {
+      hasMounted.current = true;
+    } else {
+      setAnimations(false);
+    }
+  }, []);
 
 
   useEffect(() => {
@@ -37,13 +49,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-    calculateTotal();
+    setTotal(calculateTotal());
   }, [cart]);
 
   const calculateTotal = () => {
     let totalAmount = cart?.reduce((amount, item) => {
       return amount + AvailableCoffees[item.name].price * item.count;
-    }, 0) || 0;
+    }, 0) || 1;
     setTotal(totalAmount);
     return totalAmount;
   };
@@ -60,24 +72,19 @@ function App() {
       .then((data) => setClientSecret(data.clientSecret));
   }, [cart,total]);
 
-  const incrementTotal = (amount, name) => {
+  const incrementTotal = (name) => {
     const newCart = cart.map((item) =>
       item.name === name ? { ...item, count: item.count + 1 } : item,
     );
-    // props.setAmount(total + amount);
-    localStorage.setItem("CoffeCart", JSON.stringify(newCart));
-    setTotal(total + amount);
+    localStorage.setItem("CoffeeCart", JSON.stringify(newCart));
+    setTotal(calculateTotal());
   };
 
-  const decrementTotal = (amount, name) => {
-    const newCart = cart.map((item) => {
-      if (item.name === name) {
-        return { ...item, count: item.count - 1 };
-      }
-      return item;
-    });
+  const decrementTotal = (name) => {
+    const newCart = cart.map((item) => item.name === name ? { ...item, count: item.count - 1 } : 
+    item, );
     localStorage.setItem("CoffeeCart", JSON.stringify(newCart));
-    setTotal(total - amount);
+    setTotal(calculateTotal());
   };
 
   const removeItem = (coffee) => {
@@ -95,7 +102,6 @@ function App() {
           item.name === name ? { ...item, count: item.count + 1 } : item,
         )
       : [...cart, { name: name, count: 1 }];
-    console.log(newCart);
     localStorage.setItem("CoffeeCart", JSON.stringify(newCart));
     setCart(newCart);
   };
@@ -115,7 +121,7 @@ function App() {
   }
 
 
-  const options = {
+  let options = {
     clientSecret: clientSecret,
     appearance: {
       theme: "stripe",
@@ -125,13 +131,13 @@ function App() {
 
   return (
     <>
-    <Elements stripe={stripePromise} options={options}>
+    <Elements stripe={stripePromise} options={options} key={clientSecret}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart total={total} setTotal={setTotal} cart={cart} setCart={setCart} decrementTotal={decrementTotal} incrementTotal={incrementTotal} removeItem={removeItem} addItem={addItem}/>} />
+        <Route path="/cart" element={<Cart total={total} setTotal={setTotal} cart={cart} setCart={setCart} decrementTotal={decrementTotal} incrementTotal={incrementTotal} removeItem={removeItem} addItem={addItem} animations={animations}/>} />
         <Route path="/AboutUs" element={<AboutUs />} />
-        <Route path="/shop" element={<Shop incrementTotal={incrementTotal} addItem={addItem} />} />
+        <Route path="/shop" element={<Shop addItem={addItem} />} />
         <Route path="/success" element={<Success />} />
         <Route path="/checkout" element={<CheckoutForm />} />
       </Routes>

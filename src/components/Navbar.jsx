@@ -6,8 +6,8 @@ import Button from "react-bootstrap/Button";
 import Cart from "../assets/cart3.svg";
 import { Link } from "react-router-dom";
 
-const cursorStyle = {
-  cursor: "pointer !important",
+const scrollFunction = () => {
+  window.scrollTo(0, 0);
 };
 
 function navBar() {
@@ -21,11 +21,11 @@ function navBar() {
     <>
       <Navbar
         id="nav"
-        className="navbar-nav  mx-auto pb-2 text-white shadow1 mt-0 position-fixed w-100"
+        className="navbar-nav  mx-auto pb-2 text-white shadow1 mt-0 position-fixed w-100 slide-animation"
       >
         <Container>
         <Navbar.Brand >
-          <Link to={"/"} className=" fw-bold text-white style-none underline-none text-decoration-none">
+          <Link to={"/"} className=" fw-bold text-white style-none underline-none text-decoration-none" onClick={() => scrollFunction()}>
             Dutch Pearl Coffee
           </Link>
         </Navbar.Brand>
@@ -33,22 +33,22 @@ function navBar() {
             style={additionalStyling}
             className="m-auto d-flex text-align-center text-white my-1"
           >
-            <Link className="text-white mx-2 text-decoration-none mx-2 px-2" style={{cursor: "pointer !important"}} to={"/"}>
+            <Link className="text-white mx-2 text-decoration-none mx-2 px-2" style={{cursor: "pointer !important"}} to={"/"} onClick={() => scrollFunction()}>
               Home
             </Link>
-            <Link className="text-white mx-2 text-decoration-none mx-2 px-2" to={"/AboutUs"}>
+            <Link className="text-white mx-2 text-decoration-none mx-2 px-2" to={"/AboutUs"} onClick={() => scrollFunction()}>
               About
             </Link>
           </Nav>
           <Link to="/shop">
-            <Button variant="primary text-white" role="button" className="rounded-3 px-5">
+            <Button variant="primary text-white" role="button" className="rounded-3 px-5" onClick={() => scrollFunction()}>
               Shop
             </Button>
           </Link>
           <Link
             className="mx-3"
             to={"/cart"}
-            onClick={() => window.scrollTo(0, 0)}
+            onClick={() => scrollFunction()}
           >
             <Button
               className="btn-rounded d-flex align-items-center justify-content-center p-2"
