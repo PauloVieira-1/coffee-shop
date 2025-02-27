@@ -70,22 +70,18 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
-  }, [cart,total]);
+  }, [cart, total]);
 
-  const incrementTotal = (name) => {
-    const newCart = cart.map((item) =>
-      item.name === name ? { ...item, count: item.count + 1 } : item,
-    );
-    localStorage.setItem("CoffeeCart", JSON.stringify(newCart));
-    setTotal(calculateTotal());
-  };
+  // const updateItem = (name, operation) => {
+  //   // const newCart = cart.map((item) =>
+  //   //   item.name === name ? { ...item, count: operation === "increment" ? item.count + 1 : item.count - 1 } : item,
+  //   // );
+  //   // localStorage.setItem("CoffeeCart", JSON.stringify(newCart));
+  //   // setTotal(calculateTotal());
+  // };
 
-  const decrementTotal = (name) => {
-    const newCart = cart.map((item) => item.name === name ? { ...item, count: item.count - 1 } : 
-    item, );
-    localStorage.setItem("CoffeeCart", JSON.stringify(newCart));
-    setTotal(calculateTotal());
-  };
+  // const incrementTotal = (name) => updateItem(name, "increment");
+  // const decrementTotal = (name) => updateItem(name, "decrement");
 
   const removeItem = (coffee) => {
     const filtered = cart.filter((item) => item.name !== coffee);
@@ -104,6 +100,23 @@ function App() {
       : [...cart, { name: name, count: 1 }];
     localStorage.setItem("CoffeeCart", JSON.stringify(newCart));
     setCart(newCart);
+  };
+
+  const removeSingleItem = (name) => {
+    const existingItem = cart && cart.find((item) => item.name === name);
+
+    const newCart = existingItem
+      ? cart.map((item) =>
+          item.name === name ? { ...item, count: item.count - 1 } : item,
+        )
+      : [...cart, { name: name, count: 1 }];
+    localStorage.setItem("CoffeeCart", JSON.stringify(newCart));
+    setCart(newCart);
+
+  }
+  const emptyCart = () => {
+    localStorage.removeItem("CoffeeCart");
+    setCart([]);
   };
   
   
@@ -135,7 +148,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart total={total} setTotal={setTotal} cart={cart} setCart={setCart} decrementTotal={decrementTotal} incrementTotal={incrementTotal} removeItem={removeItem} addItem={addItem} animations={animations}/>} />
+        <Route path="/cart" element={<Cart total={total} setTotal={setTotal} cart={cart} setCart={setCart} removeItem={removeItem} addItem={addItem} animations={animations} removeSingleItem={removeSingleItem} emptyCart={emptyCart}/>} />
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/shop" element={<Shop addItem={addItem} />} />
         <Route path="/success" element={<Success />} />

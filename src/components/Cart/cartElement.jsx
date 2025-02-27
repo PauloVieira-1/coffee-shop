@@ -3,19 +3,15 @@ import { Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import Minus from "../../assets/minus.svg";
 
-const CartElement = ({ name, price, image, description, quantity, incrementTotal, decrementTotal, removeItem, addItem}) => {
+const CartElement = ({ name, price, image, description, quantity, removeItem, addItem, removeSingleItem}) => {
   const [count, setCount] = useState(quantity);
 
   const handleIncrement = () => {
-    incrementTotal(name);
     setCount(count + 1);
   };
 
   const handleDecrement = () => {
-    if (count > 1) {
-      decrementTotal(name);
       setCount(count - 1);
-    }
   };
 
   return (
@@ -56,6 +52,7 @@ const CartElement = ({ name, price, image, description, quantity, incrementTotal
             onClick={() => {
               if (count > 1) {
                 handleDecrement();
+                removeSingleItem(name);
               } else {
                 removeItem(name);
               }

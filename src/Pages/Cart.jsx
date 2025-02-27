@@ -11,11 +11,13 @@ import Background2 from "../assets/unsplash2.jpg";
 import Background3 from "../assets/unsplash3.jpg";
 import Background4 from "../assets/unsplash4.jpg";
 
-function Cart({ total, cart, incrementTotal, decrementTotal, removeItem, addItem, animations }) {
+function Cart({ total, cart, removeItem, addItem, animations, removeSingleItem, emptyCart }) {
 
   useEffect(() => {
     console.log(animations)
   })
+
+
   const renderedCart = (
     <div>
       {cart.map((item) => {
@@ -27,10 +29,9 @@ function Cart({ total, cart, incrementTotal, decrementTotal, removeItem, addItem
             image={CoffeeAvailable[item.name].img}
             price={CoffeeAvailable[item.name].price}
             removeItem={removeItem}
-            incrementTotal={incrementTotal}
-            decrementTotal={decrementTotal}
             addItem={addItem}
             cart={cart}
+            removeSingleItem={removeSingleItem}
           />
         );
       })}
@@ -59,6 +60,9 @@ function Cart({ total, cart, incrementTotal, decrementTotal, removeItem, addItem
               <div className="m-3">
                 <Link to="/checkout">
                   <Button className="text-white" >Checkout</Button>
+                </Link>
+                <Link>
+                  <Button className="text-white mx-3" onClick={() => emptyCart()} >Empty Cart</Button>
                 </Link>
               </div>
             </Card>
