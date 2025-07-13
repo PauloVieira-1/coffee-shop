@@ -14,6 +14,7 @@ function AboutUs() {
       <div className="d-none d-md-none d-lg-block">
         <img
           src={CoffeeCup}
+          alt="coffee cup"
           className="img-fluid position-relative"
           style={{ width: "100%", height: "650px", objectFit: "cover" }}
         ></img>
@@ -35,6 +36,7 @@ function AboutUs() {
       <div className="d-block d-md-block d-lg-none">
         <img
           src={CoffeeCup}
+          alt="coffee cup"
           className="img-fluid position-relative"
           style={{ width: "100%", height: "650px", objectFit: "cover" }}
         ></img>

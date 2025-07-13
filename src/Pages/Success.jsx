@@ -7,6 +7,7 @@ function Success(){
         
         <img
         src={Background}
+        alt="background"
         className="img-fluid transition-top"
         style={{ width: "100%", height: "60vh", objectFit: "cover" }}
         ></img>

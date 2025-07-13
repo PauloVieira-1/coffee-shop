@@ -23,6 +23,7 @@ function ShopCard(props) {
         <div className="d-flex justify-content-center">
           <img
             src={CoffeeExample}
+            alt=""
             className="img-fluid object-fit-cover card-img"
             style={{ width: "10rem" }}
           ></img>

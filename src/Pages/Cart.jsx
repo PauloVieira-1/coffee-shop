@@ -40,10 +40,21 @@ function Cart({ total, cart, removeItem, addItem, animations, removeSingleItem, 
 
   const EmptyCartComponent = <EmptyCart />;
 
+  const checkoutButton = total > 0 ? (
+    <Link to="/checkout">
+      <Button className="text-white">Checkout</Button>
+    </Link>
+  ) : (
+    <Button className="text-white" disabled>
+      Checkout
+    </Button>
+  );
+
   return (
     <>
       <img
         src={Background1}
+        alt="coffeebag"
         className={animations ? "img-fluid transition-top" : "img-fluid"}
         style={{ width: "100%", height: "60vh", objectFit: "cover" }}
       ></img>
@@ -58,9 +69,7 @@ function Cart({ total, cart, removeItem, addItem, animations, removeSingleItem, 
               <h1 className="fw-bold mt-3 mb-2 mx-3">Total</h1>
               <h4 className="fw-light mx-3 mt-1 mb-3"> {total}</h4>
               <div className="m-3">
-                <Link to="/checkout">
-                  <Button className="text-white" >Checkout</Button>
-                </Link>
+                {checkoutButton}
                 <Link>
                   <Button className="text-white mx-3" onClick={() => emptyCart()} >Empty Cart</Button>
                 </Link>
