@@ -23,7 +23,7 @@ function VerticalModal(props) {
         </p>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.close}>Close</Button>
+        <Button className="btn btn-primary rounded-3 px-5 text-white" onClick={props.close}>Close</Button>
       </Modal.Footer>
     </Modal>
   );

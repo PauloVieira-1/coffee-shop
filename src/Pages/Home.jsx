@@ -89,17 +89,17 @@ function Home() {
                 </p>
                 <Button
                   id="my-button"
-                  className="btn btn-white rounded-3 px-5 mt-4 text-center transition-fast"
+                  className="btn btn-white rounded-3 px-5 mt-4 text-center transition-fast p-2"
                   onClick={() => window.scrollTo(0, 750)}
                 >
-                  <h4 className="fw-bold text-center d-block pt-1">Shop Now</h4>
+                  <h4 className="fw-bold text-center d-block pt-1 fs-4">Shop Now</h4>
                 </Button>
                 <Link to="/AboutUs">
                   <Button
                     id="my-button-2"
-                    className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4 transition-fast"
+                    className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4 transition-fast p-2"
                   >
-                    <h4 className="fw-bold text-center d-block pt-1">
+                    <h4 className="fw-bold text-center d-block pt-1 fs-4">
                       About Us
                     </h4>
                   </Button>
