@@ -26,15 +26,15 @@
   "devDependencies": {
     "prettier": "^3.4.2"
   },
-  "scripts": {
-    "start": "node backend/server.js",
-    "dev": "npx nodemon --exec babel-node backend/server.js",
-    "frontend": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "pretty": "npx prettier . --write"
-  },
+"scripts": {
+  "start": "node src/backend/server.js",
+  "dev": "npx nodemon --exec babel-node src/backend/server.js",
+  "frontend": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject",
+  "pretty": "npx prettier . --write"
+},
   "eslintConfig": {
     "extends": [
       "react-app",
