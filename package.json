@@ -21,15 +21,15 @@
     "stripe": "^17.7.0",
     "web-vitals": "^4.2.4"
   },
-"scripts": {
-  "start": "node src/backend/server.js",       
-  "dev": "npx nodemon --exec babel-node src/backend/server.js", 
-  "frontend": "react-scripts start",            
-  "build": "react-scripts build",
-  "test": "react-scripts test",
-  "eject": "react-scripts eject",
-  "pretty": "npx prettier . --write"
-},
+  "scripts": {
+    "start": "node src/backend/server.js",
+    "dev": "npx nodemon --exec babel-node src/backend/server.js",
+    "frontend": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "pretty": "npx prettier . --write"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
