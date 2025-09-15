@@ -8,43 +8,46 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 80;
 
-// Initialize Stripe with your secret key
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_51QsRhPFb6wjMdquvcPUXVb8zqeu0oTMjhUXhzWy4HbNxPQXjEsfdLd0htK5lTzJNfhgiR9pILgMRhQ7Cd5Ehgkun00andfr9Cc");
+// Ensure STRIPE_SECRET_KEY exists
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error("STRIPE_SECRET_KEY is not defined in environment variables");
+}
+
+// Initialize Stripe
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
-// Routes
+// Route to create payment intent
 app.post("/create-payment-intent", async (req, res) => {
   const { amount } = req.body;
 
   if (!amount || amount <= 0) {
-    return res.status(400).send({
-      error: {
-        message: "Invalid amount",
-      },
-    });
+    return res.status(400).json({ error: "Invalid amount" });
   }
 
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: "eur",
-      automatic_payment_methods: {
-        enabled: true,
-      },
+      automatic_payment_methods: { enabled: true },
     });
-    res.send({
-      clientSecret: paymentIntent.client_secret,
-    });
+    res.json({ clientSecret: paymentIntent.client_secret });
   } catch (error) {
+    console.error("Stripe error:", error);
     res.status(500).json({ error: error.message });
   }
 });
 
+// Optional: success page for Stripe redirect
+app.get("/success", (req, res) => {
+  res.send("<h1>Payment successful!</h1><p>Thank you for your purchase.</p>");
+});
+
 // Start server
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server running on port ${port}`);
 });

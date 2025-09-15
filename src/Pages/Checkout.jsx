@@ -14,20 +14,29 @@ const stripePromise = loadStripe("pk_test_51QsRhPFb6wjMdquvTpSk3zcc0QmBsfpgFj93v
 const CheckoutFormInner = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!stripe || !elements) return;
 
-    const result = await stripe.confirmPayment({
+    setIsProcessing(true);
+
+    const returnUrl =
+      window.location.hostname === "localhost"
+        ? "http://localhost:3000/success"
+        : "https://your-frontend-domain.com/success"; // Replace with deployed frontend URL
+
+    const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "http://localhost:3000/success",
+        return_url: returnUrl,
       },
     });
 
-    if (result.error) {
-      console.error(result.error.message);
+    if (error) {
+      console.error(error.message);
+      setIsProcessing(false);
     }
   };
 
@@ -45,7 +54,13 @@ const CheckoutFormInner = () => {
       </div>
       <form className="p-5 mt-2" onSubmit={handleSubmit}>
         <PaymentElement />
-        <Button type="submit" className='mt-4 text-white'>Submit</Button>
+        <Button 
+          type="submit" 
+          className='mt-4 text-white' 
+          disabled={!stripe || !elements || isProcessing}
+        >
+          {isProcessing ? <Spinner animation="border" size="sm" /> : 'Submit'}
+        </Button>
       </form>
     </>
   );
@@ -55,13 +70,16 @@ const CheckoutForm = ({ total = 0 }) => {
   const [clientSecret, setClientSecret] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:80/create-payment-intent", {
+    if (!total || total <= 0) return;
+
+    fetch("https://coffee-shop-backend-eh68.onrender.com/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ amount: total * 100 }),
     })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
+      .then(res => res.json())
+      .then(data => setClientSecret(data.clientSecret))
+      .catch(err => console.error(err));
   }, [total]);
 
   const options = {
