@@ -1,10 +1,11 @@
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
-import "./Nav.css";
 import Button from "react-bootstrap/Button";
-import Cart from "../assets/cart3.svg";
 import { Link } from "react-router-dom";
+import Cart from "../assets/cart3.svg";
+import Logo from "../assets/logo.png";
+import "./Nav.css";
 
 const scrollFunction = () => {
   window.scrollTo(0, 0);
@@ -12,75 +13,78 @@ const scrollFunction = () => {
 
 function NavBar() {
   return (
-    <>
-      <Navbar
-        id="nav"
-        expand="md"
-        collapseOnSelect
-        className="navbar-nav mx-auto pb-2 text-white shadow1 mt-0 position-fixed w-100 slide-animation"
-      >
-        <Container>
-          {/* Brand */}
-          <Navbar.Brand>
+    <Navbar
+      id="nav"
+      expand="md"
+      collapseOnSelect
+      className="navbar-nav mx-auto pb-1 text-white shadow1 mt-0 position-fixed w-100 slide-animation"
+    >
+      <Container>
+        {/* Brand with logo */}
+        <Navbar.Brand className="d-flex align-items-center">
+          <Link
+            to="/"
+            className="d-flex align-items-center text-decoration-none text-white fw-bold"
+            onClick={scrollFunction}
+          >
+            <img
+              src={Logo}
+              alt="Dutch Pearl Coffee"
+              style={{ height: "70px", marginRight: "40px" }}
+            />
+            Pearldutch
+          </Link>
+        </Navbar.Brand>
+
+        {/* Toggle button for mobile */}
+        <Navbar.Toggle
+          aria-controls="basic-navbar-nav"
+          className="border-0"
+          style={{ filter: "invert(1)" }}
+        />
+
+        {/* Collapsible Nav */}
+        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+          <Nav className="text-white my-1 align-items-center">
             <Link
-              to={"/"}
-              className="fw-bold text-white text-decoration-none"
+              className="nav-link text-white mx-2"
+              to="/"
               onClick={scrollFunction}
             >
-              Dutch Pearl Coffee
+              Home
             </Link>
-          </Navbar.Brand>
-
-          {/* Toggle button for mobile (white color) */}
-          <Navbar.Toggle
-            aria-controls="basic-navbar-nav"
-            className="border-0"
-            style={{ filter: "invert(1)" }} // makes hamburger icon white
-          />
-
-          {/* Collapsible Nav */}
-          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-            <Nav className="text-white my-1 align-items-center">
-              <Link
-                className="nav-link text-white mx-2"
-                to={"/"}
-                onClick={scrollFunction}
+            <Link
+              className="nav-link text-white mx-2"
+              to="/AboutUs"
+              onClick={scrollFunction}
+            >
+              About
+            </Link>
+            <Link
+              className="nav-link text-white mx-2"
+              to="/shop"
+              onClick={scrollFunction}
+            >
+              Shop
+            </Link>
+            <Link
+              className="nav-link mx-2"
+              to="/cart"
+              onClick={scrollFunction}
+            >
+              {/* Old solid primary button */}
+              <Button
+                className="btn-rounded d-flex align-items-center justify-content-center p-2"
+                variant="primary"
+                role="button"
               >
-                Home
-              </Link>
-              <Link
-                className="nav-link text-white mx-2"
-                to={"/AboutUs"}
-                onClick={scrollFunction}
-              >
-                About
-              </Link>
-              <Link
-                className="nav-link text-white mx-2"
-                to={"/shop"}
-                onClick={scrollFunction}
-              >
-                Shop
-              </Link>
-              {/* Cart now hidden inside menu too */}
-              <Link
-                className="nav-link mx-2"
-                to={"/cart"}
-                onClick={scrollFunction}
-              >
-                <Button
-                  className="btn-rounded d-flex align-items-center justify-content-center p-2"
-                  variant="primary"
-                  role="button"
-                >
-                  <img alt="Cart" src={Cart} width="18" height="18" />
-                </Button>
-              </Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </>
+                <img alt="Cart" src={Cart} width="18" height="18" />
+              </Button>
+            </Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
 

@@ -7,9 +7,6 @@ import { useEffect, useState } from "react";
 import CoffeeAvailable from "../components/CoffeeCard/AvailableCoffees";
 import EmptyCart from "./EmptyCart.jsx";
 import Background1 from "../assets/unsplash1.jpg";
-import Background2 from "../assets/unsplash2.jpg";
-import Background3 from "../assets/unsplash3.jpg";
-import Background4 from "../assets/unsplash4.jpg";
 
 function Cart({ total, cart, removeItem, addItem, animations, removeSingleItem, emptyCart }) {
 

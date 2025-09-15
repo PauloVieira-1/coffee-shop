@@ -14,12 +14,13 @@ import { useEffect, useState, useRef } from "react";
 import AvailableCoffees from "./components/CoffeeCard/AvailableCoffees.js";
 
 function App() {
-  const [total, setTotal] = useState(1);
+  const [total, setTotal] = useState(0);
   const [cart, setCart] = useState([]);
   const [animations, setAnimations] = useState(true);
 
   const hasMounted = useRef(false);
 
+  // Handle animation disabling after first mount
   useEffect(() => {
     if (!hasMounted.current) {
       hasMounted.current = true;
@@ -28,56 +29,61 @@ function App() {
     }
   }, []);
 
+  // Load cart from localStorage on mount
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("CoffeeCart"));
     if (storedCart) {
       setCart(storedCart);
-      setTotal(calculateTotal());
+      setTotal(calculateTotal(storedCart));
     }
   }, []);
 
+  // Recalculate total whenever cart changes
   useEffect(() => {
-    setTotal(calculateTotal());
+    setTotal(calculateTotal(cart));
   }, [cart]);
 
-  const calculateTotal = () => {
-    let totalAmount =
-      cart?.reduce((amount, item) => {
+  // Calculate total from a cart array
+  const calculateTotal = (cartArray = cart) => {
+    return (
+      cartArray?.reduce((amount, item) => {
         return amount + AvailableCoffees[item.name].price * item.count;
-      }, 0) || 0;
-    setTotal(totalAmount);
-    return totalAmount;
+      }, 0) || 0
+    );
   };
 
+  // Add one of an item
+  const addItem = (name) => {
+    const existingItem = cart.find((item) => item.name === name);
+    const newCart = existingItem
+      ? cart.map((item) =>
+          item.name === name ? { ...item, count: item.count + 1 } : item
+        )
+      : [...cart, { name, count: 1 }];
+
+    localStorage.setItem("CoffeeCart", JSON.stringify(newCart));
+    setCart(newCart);
+  };
+
+  // Remove all of a single item
   const removeItem = (coffee) => {
     const filtered = cart.filter((item) => item.name !== coffee);
     localStorage.setItem("CoffeeCart", JSON.stringify(filtered));
     setCart(filtered);
-    setTotal(calculateTotal());
   };
 
-  const addItem = (name) => {
-    const ExistingItem = cart ? cart.find((item) => item.name === name) : false;
-    const newCart = ExistingItem
-      ? cart.map((item) =>
-          item.name === name ? { ...item, count: item.count + 1 } : item
-        )
-      : [...cart, { name: name, count: 1 }];
-    localStorage.setItem("CoffeeCart", JSON.stringify(newCart));
-    setCart(newCart);
-  };
-
+  // Remove a single quantity of an item
   const removeSingleItem = (name) => {
-    const existingItem = cart && cart.find((item) => item.name === name);
-    const newCart = existingItem
-      ? cart.map((item) =>
-          item.name === name ? { ...item, count: item.count - 1 } : item
-        )
-      : [...cart, { name: name, count: 1 }];
+    const newCart = cart
+      .map((item) =>
+        item.name === name ? { ...item, count: item.count - 1 } : item
+      )
+      .filter((item) => item.count > 0); // removes items that hit 0 count
     localStorage.setItem("CoffeeCart", JSON.stringify(newCart));
     setCart(newCart);
   };
 
+  // Empty entire cart
   const emptyCart = () => {
     localStorage.removeItem("CoffeeCart");
     setCart([]);
@@ -85,9 +91,9 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar cart={cart} /> {/* You could pass cart to display count in Nav */}
       <Routes>
-        <Route path="/" element={<Home />} />
+      <Route path="/" element={<Home addItem={addItem} />} />
         <Route
           path="/cart"
           element={
@@ -107,7 +113,10 @@ function App() {
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/shop" element={<Shop addItem={addItem} />} />
         <Route path="/success" element={<Success />} />
-        <Route path="/checkout" element={<CheckoutForm cart={cart} total={total} />} />
+        <Route
+          path="/checkout"
+          element={<CheckoutForm cart={cart} total={total} />}
+        />
       </Routes>
       <Footer />
     </>

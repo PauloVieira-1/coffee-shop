@@ -24,8 +24,9 @@ function ImgDesc() {
             Browse our shop to find the perfect coffee roast for you
           </h4>
           <p className="ms-5 fw-light">
-            We offer a vast selection of coffee blends and also welcome custom
-            orders to suit your taste.
+            We offer a vast selection of coffee blends, each with its own unique
+            flavor profile and aroma. Whether you prefer a bold, dark roast or a
+            light, fruity blend, we have something for every coffee lover.
           </p>
           <Row className="position-relative bottom-0 end-0 pt-5 ps-2">
             <Link to="/AboutUs">

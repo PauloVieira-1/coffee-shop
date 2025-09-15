@@ -3,32 +3,10 @@ import Coffee from "../assets/coffeebag3.jpg";
 import CoffeeCard from "../components/CoffeeCard/coffeeCard.jsx";
 import AvailableCoffees from "../components/CoffeeCard/AvailableCoffees.js";
 import ImgDesc from "../components/ImgDesc/ImgDesc.jsx";
-import Navbar from "../components/Navbar.jsx";
 import { Link } from "react-router-dom";
 import { useEffect, useMemo, useRef } from "react";
 
-const styles = {
-  // backgroundImage: `url(${Coffee})`,
-  backgroundRepeat: "no-repeat",
-  backgroundAttachment: "fixed",
-  backgroundSize: "100%",
-  height: "50vh",
-  position: "relative",
-  zIndex: "1",
-  top: "0",
-};
-
-const bg = {
-  // background: "linear-gradient(to bottom, rgba(26, 30, 34, 1) 49%, white 98%)",
-  background: "rgb(240, 234, 228)",
-  height: "280vh",
-  width: "100%",
-  position: "relative",
-  top: "0",
-  zIndex: "2",
-};
-
-function Home() {
+function Home({ addItem }) {
   const headingRef = useRef(null);
   const paraRef = useRef(null);
 
@@ -40,7 +18,6 @@ function Home() {
         if (entry.target === headingRef.current && entry.isIntersecting) {
           entry.target.classList.add("transition-fast");
         }
-
         if (entry.target === paraRef.current && entry.isIntersecting) {
           entry.target.classList.add("transition-slow");
         }
@@ -48,22 +25,19 @@ function Home() {
     });
 
     revealRefs.forEach((ref) => {
-      if (ref) {
-        observer.observe(ref.current);
-      }
+      if (ref) observer.observe(ref.current);
     });
 
     return () => {
       revealRefs.forEach((ref) => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
-        }
+        if (ref.current) observer.unobserve(ref.current);
       });
     };
   }, [revealRefs]);
 
   return (
     <>
+      {/* Hero Section */}
       <div>
         <img
           src={Coffee}
@@ -72,23 +46,22 @@ function Home() {
           style={{ height: "100vh", objectFit: "cover" }}
         />
 
+        {/* Desktop Overlay */}
         <div
           className="text-white position-absolute w-100 d-none d-lg-block"
           style={{ top: "330px", left: "50px" }}
         >
           <Container className="d-flex align-items-center">
             <Row className="w-100">
-              <Col className=" ps-5 ms-4">
+              <Col className="ps-5 ms-4">
                 <h1 className="text-white fw-bold display-2 mb-4">
                   The Best <br /> Ugandan Coffee
                 </h1>
                 <p className="text-white">
                   Roasted by expert coffee roasters based in Uganda. The flavors
-                  of Africa
-                  <br /> distilled into our unique coffee blends
+                  of Africa <br /> distilled into our unique coffee blends
                 </p>
                 <Button
-                  id="my-button"
                   className="btn btn-white rounded-3 px-5 mt-4 text-center transition-fast p-2"
                   onClick={() => window.scrollTo(0, 750)}
                 >
@@ -96,7 +69,6 @@ function Home() {
                 </Button>
                 <Link to="/AboutUs">
                   <Button
-                    id="my-button-2"
                     className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4 transition-fast p-2"
                   >
                     <h4 className="fw-bold text-center d-block pt-1 fs-4">
@@ -109,6 +81,7 @@ function Home() {
           </Container>
         </div>
 
+        {/* Mobile Overlay */}
         <div
           className="text-white position-absolute w-100 d-block d-lg-none"
           style={{ top: "250px", left: "10px" }}
@@ -124,7 +97,6 @@ function Home() {
                   of Africa distilled into our unique coffee blends
                 </p>
                 <Button
-                  id="my-button"
                   className="btn btn-white rounded-3 px-3 mt-4 text-center"
                   onClick={() => window.scrollTo(0, 750)}
                 >
@@ -132,7 +104,6 @@ function Home() {
                 </Button>
                 <Link to="/AboutUs">
                   <Button
-                    id="my-button-2"
                     className="btn btn-outline-white rounded-3 px-4 mt-4 text-center ms-4"
                   >
                     <h4 className="fw-bold text-center d-block pt-1">
@@ -146,6 +117,7 @@ function Home() {
         </div>
       </div>
 
+      {/* Coffee Selection Section */}
       <main className="d-flex justify-content-center mb-4 mx-0 w-100">
         <div className="mb-5 position-relative">
           <div className="mt-5 mb-3 text-center">
@@ -159,8 +131,9 @@ function Home() {
             />
           </div>
 
-          <Container fluidclassName="mb-5 mt-3 d-flex justify-content-center text-center mx-0 w-100">
-            <Row className="w-100 d-dlex d-lg-none">
+          <Container className="mb-5 mt-3 d-flex justify-content-center text-center mx-0 w-100">
+            {/* Mobile view */}
+            <Row className="w-100 d-flex d-lg-none">
               {Object.keys(AvailableCoffees).map((coffee) => (
                 <Col
                   key={coffee}
@@ -170,10 +143,15 @@ function Home() {
                     name={AvailableCoffees[coffee].name}
                     specs={AvailableCoffees[coffee].specs}
                     image={AvailableCoffees[coffee].img}
+                    price={AvailableCoffees[coffee].price}
+                    underline={AvailableCoffees[coffee].underline}
+                    addItem={addItem} 
                   />
                 </Col>
               ))}
             </Row>
+
+            {/* Desktop view */}
             <Row className="w-100 d-none d-lg-flex">
               {Object.keys(AvailableCoffees).map((coffee) => (
                 <Col
@@ -185,6 +163,9 @@ function Home() {
                     name={AvailableCoffees[coffee].name}
                     specs={AvailableCoffees[coffee].specs}
                     image={AvailableCoffees[coffee].img}
+                    price={AvailableCoffees[coffee].price}
+                    underline={AvailableCoffees[coffee].underline}
+                    addItem={addItem} 
                   />
                 </Col>
               ))}
@@ -192,6 +173,8 @@ function Home() {
           </Container>
         </div>
       </main>
+
+      {/* Image Description Section */}
       <Row className="justify-content-center mt-5">
         <Col className="d-flex align-items-center justify-content-center text-center">
           <ImgDesc />
