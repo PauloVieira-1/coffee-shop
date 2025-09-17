@@ -48,14 +48,26 @@ function AboutUs() {
         />
         <div
           className="text-white position-absolute transition-fast"
-          style={{ top: "110px", left: "50px" }}
+          style={{
+            top: "110px",
+            left: "15px",
+            right: "15px",
+            padding: "0",
+            boxSizing: "border-box",
+          }}
         >
           <h1>About Us</h1>
           <p>Explore our story and commitment to quality</p>
         </div>
         <div
           className="text-dark position-absolute d-flex flex-column align-items-end transition-fast-right"
-          style={{ top: "440px", right: "50px" }}
+          style={{
+            top: "440px",
+            left: "15px",
+            right: "15px",
+            padding: "0",
+            boxSizing: "border-box",
+          }}
         >
           <h1>Our Story</h1>
           <p>Pearldutch: Coffee with purpose</p>
@@ -68,11 +80,12 @@ function AboutUs() {
           <Col
             xs={12}
             md={7}
-            className="pe-5 d-flex justify-content-center flex-column mb-5"
+            className="d-flex justify-content-center flex-column mb-5"
+            style={{ paddingLeft: "15px", paddingRight: "15px" }} // mobile padding
           >
             <h1 className="fw-bold mb-5">Our Founder</h1>
             <p className="fw-light lh-lg">
-              Pearldutch was born from the strength and resilience of my mother,
+              Pearldutch was born from the strength and resilience of a mother,
               <strong> Maggie</strong>, a woman whose dedication to her family
               and community inspired this mission. Based in Central Uganda, she
               has worked alongside female farmers—many of them single mothers—
@@ -87,7 +100,7 @@ function AboutUs() {
           <Col
             xs={12}
             md={6}
-            className="text-center d-flex align-items-center justify-content-center d-block d-md-block d-lg-none"
+            className="text-center d-flex align-items-center justify-content-center d-block d-md-block d-lg-none mb-4"
           >
             <div className="card bg-dark">
               <img
@@ -131,10 +144,11 @@ function AboutUs() {
           <Col
             xs={12}
             md={7}
-            className="pe-5 d-flex justify-content-center flex-column mb-5"
+            className="d-flex justify-content-center flex-column mb-5"
+            style={{ paddingLeft: "15px", paddingRight: "15px" }} // mobile padding
           >
-            <h1 className="fw-bold mb-5 ps-5 mt-5">Our Mission</h1>
-            <p className="fw-light lh-lg ps-5">
+            <h1 className="fw-bold mb-5 mt-5">Our Mission</h1>
+            <p className="fw-light lh-lg">
               At Pearldutch, our mission is simple: help farmers, especially
               single mothers in Uganda, gain access to global markets, fair
               prices, and a sustainable future. Every purchase directly supports
@@ -150,7 +164,7 @@ function AboutUs() {
           <Col
             xs={12}
             md={6}
-            className="text-center d-flex align-items-center justify-content-center d-block d-md-block d-lg-none"
+            className="text-center d-flex align-items-center justify-content-center d-block d-md-block d-lg-none mb-4"
           >
             <div className="card bg-dark">
               <img
@@ -169,7 +183,8 @@ function AboutUs() {
           <Col
             xs={12}
             md={7}
-            className="pe-5 d-flex justify-content-center flex-column mb-5"
+            className="d-flex justify-content-center flex-column mb-5"
+            style={{ paddingLeft: "15px", paddingRight: "15px" }} // mobile padding
           >
             <h1 className="fw-bold mb-4">Sustainability & Community</h1>
             <p className="fw-light lh-lg">
@@ -193,7 +208,7 @@ function AboutUs() {
           >
             <div className="card bg-dark">
               <img
-                src={Plantation2} // replace with another sustainability-related image if available
+                src={Plantation2}
                 className="card-img-top"
                 alt="Sustainability"
                 style={{ width: "100%", height: "50vh", objectFit: "cover" }}
@@ -217,7 +232,6 @@ function AboutUs() {
             </div>
           </Col>
         </Row>
-
 
         {/* Coffees Section */}
         <Row className="p-5 bg-light rounded">
